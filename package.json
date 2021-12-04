@@ -1,0 +1,71 @@
+{
+  "name": "passwordsafe",
+  "version": "1.0.0",
+  "description": "网络安全大作业",
+  "main": "index.tsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run check && webpack serve --config ./config/webpack.common.js --env development",
+    "build": "npm run check && webpack --config ./config/webpack.common.js --env production",
+    "check": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Plane1005/passwordsafe.git"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.7.0",
+    "antd": "^4.16.13",
+    "axios": "^0.22.0",
+    "copy-to-clipboard": "^3.3.1",
+    "core-js": "^3.18.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "ts-loader": "^9.2.6",
+    "webpack": "^5.55.0",
+    "webpack-cli": "^4.8.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.5",
+    "@babel/plugin-transform-arrow-functions": "^7.14.5",
+    "@babel/plugin-transform-block-scoping": "^7.15.3",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.15.0",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.1",
+    "@types/react": "^17.0.27",
+    "@types/react-dom": "^17.0.9",
+    "@types/react-router-dom": "^5.3.1",
+    "autoprefixer": "^10.3.6",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-import": "^1.13.3",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^9.0.1",
+    "css-loader": "^6.3.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.3.2",
+    "less": "^4.1.1",
+    "less-loader": "^10.0.1",
+    "postcss": "^8.3.8",
+    "postcss-loader": "^6.1.1",
+    "postcss-preset-env": "^6.7.0",
+    "react-refresh": "^0.10.0",
+    "react-router-dom": "^5.3.0",
+    "style-loader": "^3.3.0",
+    "typescript": "^4.4.3",
+    "url-loader": "^4.1.1",
+    "webpack-dev-server": "^4.6.0",
+    "webpack-merge": "^5.8.0"
+  },
+  "keywords": [
+    "password",
+    "safe"
+  ],
+  "author": "jet",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Plane1005/passwordsafe/issues"
+  },
+  "homepage": "https://github.com/Plane1005/passwordsafe#readme"
+}

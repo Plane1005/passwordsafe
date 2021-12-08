@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
 import './style.less'
-import { Steps, Form, Input, Button, DatePicker } from 'antd'
+import { Steps, Form, Input, Button, DatePicker, message } from 'antd'
+import axios from 'axios'
+import { INFO, RES, setInfo, setRes } from '../Store/index'
 
 const { Step } = Steps
 
@@ -12,8 +14,22 @@ const Home: React.FC = (props: any) => {
 
   const onFinish = (values: any) => {
     console.log('Success:', values)
-    history.push('result')
+    setInfo(values)
+    axios
+      .post('http://localhost:2333/api/safe/test', values)
+      .then((res) => {
+        console.log("res", res);
+        setRes(res?.data?.data)
+        history.push('result')
+      })
+      .catch((err) => {
+        message.error('发生错误')
+      })
   }
+
+  const onFinishFailed = (errorInfo: any) => {
+    message.error("信息不完善！")
+  };
 
   return (
     <div className="g-form">
@@ -27,33 +43,21 @@ const Home: React.FC = (props: any) => {
           </Steps>
         </div>
         <div className="m-detail">
-          <Form name="basic" initialValues={{ remember: true }} onFinish={onFinish} form={form}>
-            <div className="m-first" style={{display: current == 0 ? "block" : "none"}}>
-              <Form.Item
-                label="姓名"
-                name="username"
-                // rules={[{ required: true, message: '请输入姓名!' }]}
-              >
+          <Form name="basic" initialValues={{ remember: true }} onFinish={onFinish} form={form} onFinishFailed={onFinishFailed}>
+            <div className="m-first" style={{ display: current == 0 ? 'block' : 'none' }}>
+              <Form.Item label="姓名" name="name" rules={[{ required: true, message: '请输入姓名' }]}>
                 <Input />
               </Form.Item>
-              <Form.Item
-                label="手机号"
-                name="mobile"
-                // rules={[{ required: true, message: '请输入手机号!' }]}
-              >
+              <Form.Item label="手机号" name="mobile" rules={[{ required: true, message: '请输入手机号' }]}>
                 <Input />
               </Form.Item>
-              <Form.Item
-                label="出生日期"
-                name="birth"
-                // rules={[{ required: true, message: '请输入出生日期!' }]}
-              >
+              <Form.Item label="出生日期" name="birth" rules={[{ required: true, message: '请输入出生日期' }]}>
                 <DatePicker />
               </Form.Item>
-              <Form.Item label="身份证后四位" name="person">
+              <Form.Item label="身份证后四位" name="person" rules={[{ required: true, message: '请输入身份号' }]}>
                 <Input />
               </Form.Item>
-              <Form.Item label="QQ号" name="qq">
+              <Form.Item label="QQ号" name="qq" rules={[{ required: true, message: '请输入QQ号' }]}>
                 <Input />
               </Form.Item>
               <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
@@ -68,12 +72,19 @@ const Home: React.FC = (props: any) => {
                 </Button>
               </Form.Item>
             </div>
-            <div className="m-two" style={{display: current == 1 ? "block" : "none"}}>
-              <Form.Item label="测试密码">
+            <div className="m-two" style={{ display: current == 1 ? 'block' : 'none' }}>
+              <Form.Item label="测试密码" name="passwd" rules={[{ required: true, message: '请输入测试密码' }]}>
                 <Input.Password placeholder="请输入测试密码" />
               </Form.Item>
               <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-              <Button type="primary" style={{marginRight:15}} onClick={()=>{setCurrent(0)}} size="large">
+                <Button
+                  type="primary"
+                  style={{ marginRight: 15 }}
+                  onClick={() => {
+                    setCurrent(0)
+                  }}
+                  size="large"
+                >
                   上一步
                 </Button>
                 <Button type="primary" htmlType="submit" size="large">

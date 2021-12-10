@@ -13,12 +13,12 @@ const Home: React.FC = (props: any) => {
   const history = useHistory()
 
   const onFinish = (values: any) => {
-    console.log('Success:', values)
+    // console.log('Success:', values)
     setInfo(values)
     axios
       .post('http://localhost:2333/api/safe/test', values)
       .then((res) => {
-        console.log("res", res);
+        // console.log("res", res);
         setRes(res?.data?.data)
         history.push('result')
       })
@@ -43,7 +43,7 @@ const Home: React.FC = (props: any) => {
           </Steps>
         </div>
         <div className="m-detail">
-          <Form name="basic" initialValues={{ remember: true }} onFinish={onFinish} form={form} onFinishFailed={onFinishFailed}>
+          <Form name="basic" initialValues={ INFO || { remember: true }} onFinish={onFinish} form={form} onFinishFailed={onFinishFailed} >
             <div className="m-first" style={{ display: current == 0 ? 'block' : 'none' }}>
               <Form.Item label="姓名" name="name" rules={[{ required: true, message: '请输入姓名' }]}>
                 <Input />

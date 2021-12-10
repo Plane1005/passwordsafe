@@ -17,11 +17,11 @@ const Result: React.FC = (props: any) => {
   const { r1, r2, r3, r4, score } = RES
 
   const onFinish = (values: any) => {
-    console.log('Success:', values)
+    // console.log('Success:', values)
   }
 
   useEffect(() => {
-    console.log('reslut', INFO, RES)
+    // console.log('reslut', INFO, RES)
   }, [])
 
   return (
@@ -54,6 +54,7 @@ const Result: React.FC = (props: any) => {
                   密码短于8
                 </span>
               </Timeline.Item>
+              {/* !@#$%^&*?\(\){}|.-=_+-*`~ */}
               <Timeline.Item color={r2 === true ? 'green' : 'red'}>
                 包括大小写字母、数字和特殊符号
                 <span style={{ display: r2 === true ? 'none' : 'block' }} className="u-info">

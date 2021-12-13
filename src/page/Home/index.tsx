@@ -4,6 +4,7 @@ import './style.less'
 import { Steps, Form, Input, Button, DatePicker, message } from 'antd'
 import axios from 'axios'
 import { INFO, RES, setInfo, setRes } from '../Store/index'
+import { getScrectObj } from '@/utils/index'
 
 const { Step } = Steps
 
@@ -12,8 +13,9 @@ const Home: React.FC = (props: any) => {
   const [form] = Form.useForm()
   const history = useHistory()
 
-  const onFinish = (values: any) => {
-    // console.log('Success:', values)
+  const onFinish = async (values: any) => {
+    values = await getScrectObj(values)
+    console.log('Success:', values)
     setInfo(values)
     axios
       .post('http://localhost:2333/api/safe/test', values)
